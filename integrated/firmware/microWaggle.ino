@@ -1,20 +1,16 @@
 #include <vector>
 #include <map>
 
-/* TODO
-* - https://github.com/waggle-sensor/sensors/blob/master/v4/integrated/firmware/Sensor02.ino -- look at this
-* for getData() should point to its respective functions
-*/
-
 class Sensor
 {
     private:
-        int sensingFrequency = 30; //the frequency of sensing
+        int sensingFrequency = 20; //the frequency of sensing
         int lastSensingTime = 0;
         bool enabled = true;
         int sensorId;
         String sensorName;
-    
+        int sensorType;
+        
     public:
         Sensor(int id, String name){
             sensorId = id;
@@ -23,33 +19,52 @@ class Sensor
         int getSensorId(){
             return sensorId;
         }
+        
         String getSensorName(){
             return sensorName;
         }
+        
         void setSensorId(int id)
         {
             sensorId = id;
         }
+        
         int getSensingFrequency(){
             return sensingFrequency;
         }
+        
         void setSensingFrequency(int newSensFreq){
             sensingFrequency = newSensFreq;
         }
+        
+        void setType(int type){
+            sensorType= type;
+        }
+        
+        
         bool getEnabled(){
             return enabled;
         }
+        
         void setEnabled(bool newEnabled){
             enabled = newEnabled;
         }
+        
         int getLastSensingTime()
         {
             return lastSensingTime;
         }
+        
+        int getType(){
+            return sensorType; 
+        }
+        
+        
         void setLastSensingTime(int t)
         {
             lastSensingTime = t;
         }
+        
 };
 Sensor* tempSensor;
 Sensor* humiditySensor;
@@ -57,18 +72,18 @@ Sensor* sensorsPtrs[2]; // holds sensor
 std::map<int, Sensor*> sensorIdMap;
 
 bool sdCardEnabled = false;
-int reportingFreq = 60; //60 seconds is default for reporting (sending sensorgrams to cloud)
+int reportingFreq =10; //60 seconds is default for reporting (sending sensorgrams to cloud)
 String status = "";
 // thresholdSensorFreq is the lowest sensing frequency that a sensor can have, anything lower is not permitted
 int thresholdSensorFreq = 5; //TODO: set this to what Raj feels is good
 
 // **SENSORGRAM VARIABLES**
 String allSensorgrams; //stores all the sensorgrams appended on to each other. this is what will be published by particle.publish(...);
-//int freq = 15; //num seconds to wait between creating/sending sensorgram
+
 int lastSendTime  = Time.now();
 int lastStatusTime = Time.now();
-int statusFreq = 10; 
-int maxPublishingLength = 600; // indicates the max amt of characters that you can send in a Particle.publish() call (it is actually around 620, but it's 100 for now for testing)
+int statusFreq = 60; 
+int maxPublishingLength = 255; // indicates the max amt of characters that you can send in a Particle.publish() call (it is actually around 620, but it's 100 for now for testing)
 
 void setup() {
     sensorIdMap.insert(std::make_pair(1, new Sensor(1, "tempSensor")));
@@ -85,7 +100,7 @@ void loop() {
     unsigned short sensorId = 6;
     unsigned char sensor_instance = 70;
     unsigned char param_id = 9;
-    unsigned short data = 5;
+    uint16_t data = 5;
 
     // check if time to send status msg
     if (Time.now() - lastStatusTime >= statusFreq) 
@@ -111,7 +126,7 @@ void loop() {
             s->setLastSensingTime(Time.now()); //update last sensing time
             String sensorgram = pack((unsigned short)(s->getSensorId()), sensor_instance, param_id, data, s->getLastSensingTime()); // just some dummy data
             allSensorgrams += sensorgram;
-            if(allSensorgrams.length() >= maxPublishingLength) // if too much of sensorgrams build up, we put a semicolon to indicate that for the next publish, we only send till the semicolon (so we don't send too much in one send)
+            if(allSensorgrams.length() >= maxPublishingLength-15) // if too much of sensorgrams build up, we put a semicolon to indicate that for the next publish, we only send till the semicolon (so we don't send too much in one send)
                 allSensorgrams += ";"; 
         }
     }
@@ -146,8 +161,7 @@ int sensorConfig(String param)
 }
 
 
-//*****IS STATUS MSG LESS THAN 620 BYTES??********
-//status msg must be less 620 bytes to be able to publish the data
+
 String getStatusMsg()
 {
     String status = "";
@@ -158,8 +172,7 @@ String getStatusMsg()
     }
     status += "SD:" + boolToEnabledDisabled(sdCardEnabled) + ";";
     status += "ReportFreq:" + String(reportingFreq);
-    // status += String::format("SD Card: %s\n", sdCardEnabled ? "enabled" : "disabled"); 
-    // status += String::format("Reporting Frequency: %d", reportingFreq);
+
     return status;
 }
 
@@ -222,14 +235,17 @@ int nodeConfig(String param) {
         Particle.publish("ERROR", "nodeConfig: command not found");
     return 0;
 }
+
+
+
 // ****SENSORGRAM FUNCTIONS*****
 
 // publish sensorgram data
 void PublishData()
 {
-    //only send sensorgrams uptill first semicolon
+
     int delimiterIndex = allSensorgrams.indexOf(";");
-    String sendData; //TODO: should we use pointers here?
+    String sendData; 
     if(delimiterIndex != -1){ // if delimeter exists, then only send up till the delimeter (b/c delimeter indicates the max amount you can send in one publish)
         sendData = allSensorgrams.substring(0, delimiterIndex); //TODO: Check if this works correctly...
         allSensorgrams = allSensorgrams.substring(delimiterIndex+1); // set allSensorgrams to everything after the first semi colon
@@ -240,21 +256,21 @@ void PublishData()
     Particle.publish("sensorgram", sendData, PRIVATE);
 }
 
-String pack(unsigned short sensorID, unsigned char sensor_instance, unsigned char parameter_id, unsigned short data, unsigned int cTime) {
+String pack(unsigned short sensorID, unsigned char sensor_instance, unsigned char parameter_id,  uint16_t data, unsigned int cTime) {
+
 	String sensorIDHex = ShortToHex(sensorID);
 	String sensorInstanceHex = CharToHex(sensor_instance);
 	String parameterIdHex = CharToHex(parameter_id);
-	String dataHex = ShortToHex(data);
+	String dataHex = Int_16_to_Hex(&data);
 	String cTimeHex = IntToHex(cTime);
-
+    String type = "15";
     String lengthOfData = "0002";
-	if(dataHex.substring(0,2) == "00") //only 1 byte of data
-		lengthOfData = "0001";
-    
-	String sensorgramString = lengthOfData + sensorIDHex + sensorInstanceHex + parameterIdHex + cTimeHex + dataHex;
+	String sensorgramString = lengthOfData + sensorIDHex + sensorInstanceHex + parameterIdHex +  cTimeHex + type +dataHex+";";
 
-	return sensorgramString;
+	// [Length (2B)] [Sensor_ID (2B)] [Sensor_Instance (1B)] [Parameter_ID (1B)] [ Sampling_Time (4B)] [ Data_Format (1B)] [data (xB)]
+    return sensorgramString;
 }
+
 
 String IntToHex(unsigned int number)
 {
@@ -264,6 +280,7 @@ String IntToHex(unsigned int number)
 		chars[3-i] = a_begin[i]; //add it in reverse for big endian
 	return BytearrayToHex(chars, 4);
 }
+
 
 String ShortToHex(unsigned short number)
 {
@@ -275,6 +292,7 @@ String ShortToHex(unsigned short number)
 	return BytearrayToHex(chars, 2);
 }
 
+
 String CharToHex(unsigned char number)
 {
 	byte chars[1];
@@ -282,6 +300,7 @@ String CharToHex(unsigned char number)
 	chars[0] = *a_begin;
 	return BytearrayToHex(chars, 1);
 }
+
 
 String BytearrayToHex(byte* bytearray, int length) {
 	//convert to hex String
@@ -294,3 +313,33 @@ String BytearrayToHex(byte* bytearray, int length) {
 	}
 	return hexStr;
 }
+
+
+String Int_16_to_Hex(uint16_t* yourint16_t){
+unsigned char ch[4];
+memcpy(ch,yourint16_t,sizeof(uint16_t));
+String Final= Char_Byte_2_Hex(ch[1])+ Char_Byte_2_Hex(ch[0]);
+return Final;
+}
+
+
+String Char_Byte_2_Hex(char val){
+
+      String Zeros = "00";
+      String Hex = String(int(val),HEX);
+      String Final;
+
+    if (Hex.length()<Zeros.length())
+        {
+        Final  =  Zeros.substring(0,Zeros.length()-Hex.length())+Hex;
+        }
+        else{
+        Final =  Hex;
+    
+        }
+    
+    return Final;
+    
+}
+
+
