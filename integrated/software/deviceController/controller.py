@@ -27,9 +27,6 @@ except IOError:
 
 
 
-
-#change this to a request called "enableAllSensors" in the particle cloud
-
 def getToken(args):
     tokenToReturn = args
 
@@ -100,7 +97,6 @@ def loadNodes():
 
 def overwriteJSON():
     os.remove("nodeConfigs.json")
-    #file = open("nodeConfigs.json", 'w')
     for node in jsonNodes:
         with open('nodeConfigs.json', 'a') as outfile:
             json.dump(node, outfile)
@@ -119,7 +115,6 @@ def enableAllSensors(node):
     sendConfig(node, "enableall", "nodeConfig")
 
 
-#change this to a request called "enableAllSensors" in the particle cloud
 def disableAllNodes():
     for node in jsonNodes:
         disableAllSensors(node)
@@ -148,10 +143,7 @@ def reconfigure():
     for node in jsonNodes:
         reconfigureNode(node)
     listNodes()
-    # with open('nodeConfigs.json', 'w') as outfile:
-    #     for node in jsonNodes:
-    #         json.dump(node, outfile)
-    #         outfile.write("\n")
+
 
 def reconfigureNode(node):
     params = "freqreport-" + node["sendingFrequency"]
@@ -176,15 +168,13 @@ def reconfigureSensors(node,sensor):
     if(not(sensor[2])):
         enabler= "dis"
     params = "{0};{1};{2}".format(sensor[1],enabler,sensor[3])
-    print(params)
     sendConfig(node, params, "sensorConfig")
 
 
 
 def configure(unparsedargs):
-    #make sure nodes are loaded, we're going to overwrite the configs file every time this function is called.
-    #print(unparsedargs)
-    nodeToConfigure = unparsedargs[0] #name of the node that the user wants to configure
+
+    nodeToConfigure = unparsedargs[0]
     multipleNodes = False
 
     if ',' in nodeToConfigure:
@@ -232,7 +222,7 @@ def configure(unparsedargs):
         else:
             print(nodeToConfigure)
             for nodeIDToModify in nodeToConfigure:
-                #please help me what is going on here
+
                 for node in jsonNodes:
 
                     if node["nodeID"] == nodeIDToModify:
@@ -255,7 +245,7 @@ def configure(unparsedargs):
 
             print(nodeToConfigure)
             for nodeLabelToModify in nodeToConfigure:
-                #please help me what is going on here
+
                 for node in jsonNodes:
                     if node["nodeID"] == nodeLabelToModify:
                         node["enabled"] = True
@@ -276,7 +266,7 @@ def configure(unparsedargs):
         else:
             newSDFSetting = unparsedargs[unparsedargs.index("-sdf") + 1]
             for nodeLabelToModify in nodeToConfigure:
-                #please help me what is going on here
+
                 for node in jsonNodes:
 
                     if node["nodeID"] == nodeLabelToModify:
@@ -358,7 +348,6 @@ def configure(unparsedargs):
     if '-sen' in unparsedargs:
         function = unparsedargs[unparsedargs.index("-sen") + 1]
 
-           ###adding or removing a sensor. --configure [nodeName(s)] -sen [sensorID(s)] [add/remove/config] [-e [T/F], -id [newID], -ssf [seconds] ] ]
            # Ex usage: --configure [nodeID] -sen add
 
         if function == 'add':
@@ -658,18 +647,17 @@ def addNode():
     jsonNodes.append(jsonToAppend)
 
     print('Updating Nodes')
+    reconfigure()
+
     with open('nodeConfigs.json', 'a') as outfile:
         json.dump(jsonToAppend, outfile)
         outfile.write("\n")
-#    jsonFile.close()
-    #configString = "{{ \"name\" : \"{}\",  }}"
+
 
 loadNodes()
-#list of node names or node ID's. compare this to a node-lookup table if it's in name form.
 
-#import OS package and get args
-args = sys.argv[1:] #get args here, removing the first "controller.py entry"
-#first, check if args are equal to non-function commands such as list nodes, help, disableAll, enableAll, addNode, removeNode
+args = sys.argv[1:]
+
 if len(args) > 0:
 
     if args[0] == "--help" or args[0] == "help":
