@@ -46,63 +46,32 @@ You are free to use any appropriate inputs for the rest of the prompts. After se
 Node respons you may visit this [link](https://api.particle.io/v1/devices/events?access_token=c9003c4f929c03b67daac131a84b9d3aa3d75e3e) which publishes the data coming out of the said Node. 
 
 #### 6.2 Using your own Node 
-
-
-
-<img src="https://raw.githubusercontent.com/waggle-sensor/summer2018/master/microWaggle/Resources/Controller_Functions.png?token=AYVA9MNuDebJoiPI5wh-vFXBK5SCwNY-ks5bs-WUwA%3D%3D">
-
-These functions will lend you the same device controls made possible through the [Controller](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/software/devicecontroller/README.md) module.
- -->
-
-
+This can be done through following similar steps descibed above. Make sure to replace the Device ID and the Access Token with the desired credentials belonging to your particle.io device.  
 
 ### 7. Get Beehive Publish Credentials:
 The micro-Waggle project keeps all its data at Argonnes Beehive Server. Beehives publish credentials can be requested through any of the following Waggle team members:
 
 ### 8. Run Relay Server to Send Data to Beehive: 
-Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate module is used to send data from the cloud to the Beehive server. The [relayServer](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/software/relayServer/README.md) module is designed to manage this task. Before the implimentation of the python module, a directory structure needs to be set up in the following manner:
-
+Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate module is used to send data from the cloud to the Beehive server. The [relayServer](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/software/relayServer) module is designed to manage this task. 
+ 
+#### 8.1 Using the Test Node At ANL
+Again for the use of the relayServer module you may use the test Node set up at ANL. As descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer), make sure to obtain the necessary credentials for the Relay server module to connect to Beehive. 
+Since the Device ID for the Particle.io device at Argonne is '53002a000c51353432383931' the directory structure for the use of the test node shoud look like this:
 ```bash
 ├── parentDirectory
 │   ├── relay-server.py
-│   ├── microWaggleNodes
-│   │   ├──Particle_Node_ID_1 
-│   │   │   ├──node_id
-│   │   │   ├──Key.pem 
-│   │   │   ├──Cert.pem
-│   │   ├──Particle_Node_ID_2 
-│   │   │   ├──node_id
-│   │   │   ├──Key.pem 
-│   │   │   ├──Cert.pem
-│   │   ├──Particle_Node_ID_3 
-│   │   │   ├──node_id
-│   │   │   ├──Key.pem 
-│   │   │   ├──Cert.pem
-................
-```
-For each Particle Device, the Waggle team will provide 3 files named 'node_id', 'Key.pem' and 'Cert.pem' which carry the necessary credentials for the Relay server module to connect to Beehive.
-
-These files should be put under the Unique directories defined by the Particle Device IDs. A real implimentation of the said file structure would look like this:
-```bash
-├── parentDirectory
-│   ├── relay-server.py
-│   ├── microWaggleNodes
+│   ├── devices
 │   │   ├──53002a000c51353432383931
 │   │   │   ├──node_id
-│   │   │   ├──Key.pem 
-│   │   │   ├──Cert.pem
-│   │   ├──53002a000c24353432384231
-│   │   │   ├──node_id
-│   │   │   ├──Key.pem 
-│   │   │   ├──Cert.pem
-│   │   ├──87002a000c51353432383931
-│   │   │   ├──node_id
-│   │   │   ├──Key.pem 
-│   │   │   ├──Cert.pem
-................
+│   │   │   ├──cacert.pem
+│   │   │   ├──key.pem 
+│   │   │   ├──cert.pem
 ```
-Once the defined file sturture is set up, you can run the following command to send the appropriate data to Beehive. 
-```python3 relay-server.py microWaggleNodes```
+After the initial implimentation of the `relay-server.py` with no args. -> `python3 relay-server.py` make sure to include the access token 'c9003c4f929c03b67daac131a84b9d3aa3d75e3e' within the `nodeConfig.json`.
+The later instructions given on the releyServer module would be sufficient in moving forward. 
+
+#### 8.2 Using your own Node
+The instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/relayServer/Readme.md)on the releyServer module would be sufficient in moving forward. 
 
 ### 9. Check Data from Device: 
 Once the previous command is ran, in less than 5 minutes you should see Microwaggle data being published on [Beehive](https://www.mcs.anl.gov/research/projects/waggle/downloads/datasets/index.php). The data will come under the link label: MWTesting.complete.recent.csv.
@@ -113,7 +82,7 @@ At this point you are in a position to modify the generic microWaggle [code](htt
 
 ### 11. Code your own micro-Waggle Device:
 
-Congradulations, you are ready to impliment your own microWaggle implimentation.
+Congratulations, you are ready to impliment your own microWaggle implimentation. Particle.io's example [log](https://docs.particle.io/guide/getting-started/examples/photon/) is good place to get you started. Make sure to contact the Waggle team at ANL for further support.
 
 ------------------------------------------------------------
 
