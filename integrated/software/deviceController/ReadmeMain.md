@@ -34,25 +34,25 @@ Once a local configuration is set `python3 controller.py --list` command can be 
 ## Basic Usage Cases
 
 - `--help` : Lists all commands, as well as their respective syntaxes and functions.
-* Ex. Usage: `python3 controller.py --help` 
+   - Ex. Usage: `python3 controller.py --help` 
 
 - `--list`: Lists all nodes present on the local config file. The respective information such as nodeID and deviceID, and sensor configuration will also be displayed.
- Ex. Usage: `python3 controller.py --list`
+  - Ex. Usage: `python3 controller.py --list`
 
 - `--enAll` : Enables all sensors on on all nodes.
- Ex. Usage: `python3 controller.py --enAll`
+   - Ex. Usage: `python3 controller.py --enAll`
 
 - `--disAll` : Disables all sensors on all nodes.
- Ex. Usage: `python3 controller.py --disAll`
+   - Ex. Usage: `python3 controller.py --disAll`
 
 - `--rm <nodeID>` : removes the node with the specified name
- Ex. Usage, **Given a node with nodeID 33 exists** : `python3 controller.py --rm <nodeID>`
+   - Ex. Usage, **Given a node with nodeID 33 exists** : `python3 controller.py --rm <nodeID>`
 
 - `--add` : Starts the prompt to add a new node.
- Ex. Usage: `python3 controller.py --add`
+   - Ex. Usage: `python3 controller.py --add`
 
 - `--configure <nodeID> [-rn/-id/-d/-e/-sdf/-ssf/-sm/-sd/-sen]`
-* Ex. Usage: **See below**
+   - Ex. Usage: **See below**
 
 ## The Configure command
 
@@ -60,59 +60,57 @@ The configure command lets you remotely control your nodes and there sensors aft
 
 - `-rn <new name>` : Renames the entered node.
   **NODE NAMES CANNOT HAVE SPACES!**
- - Ex. Usage, **Given a node with the nodeID 33 exists**: `python3 controller.py --configure 33 -rn bar` -> Node 33 is now named bar.
- - Ex. Usage, **Given nodes with the nodeID 33, 99, and 66 exist**: `python3 controller.py --configure 33,66,99 -rn Field_node` -> nodes with the nodeID 33, 66, and 99 are now named "Field_node".
+  - Ex. Usage, **Given a node with the nodeID 33 exists**: `python3 controller.py --configure 33 -rn bar` -> Node 33 is now named bar.
+  - Ex. Usage, **Given nodes with the nodeID 33, 99, and 66 exist**: `python3 controller.py --configure 33,66,99 -rn Field_node` -> nodes with the nodeID 33, 66, and 99 are now named "Field_node".
 
 - `-id <new nodeID>` : changes the nodeID of the entered node. 
- - Ex. Usage, **Given a node with the nodeID 33 exists**: `python3 controller.py --configure 33 -id 96024` -> Node with ID 33 now has the nodeID 96024.
+  - Ex. Usage, **Given a node with the nodeID 33 exists**: `python3 controller.py --configure 33 -id 96024` -> Node with ID 33 now has the nodeID 96024.
  **ANY CHANGES DONE TO A NODE WITH A SPECIFIED ID WILL BE DONE TO ALL NODES WITH THE MATCHING ID.**
 
 - `-d` : Disables all sensors on the given node. Can disable all sensors on more than one node at once if the nodeID's are separated by a comma. Example usage:
- - Ex. Usage, **Given a node with the nodeID 34 exists**: `python3 controller.py --configure 34 -d` -> Node with ID 34 is disabled.
- - Ex. Usage, **Given nodes with the nodeID 35, 36, 37, & 38 exist**: `python3 controller.py --configure 35,36,37,38 -d` -> Sensors on nodes with ID 35, 36, 37, & 38 are disabled.
+  - Ex. Usage, **Given a node with the nodeID 34 exists**: `python3 controller.py --configure 34 -d` -> Node with ID 34 is disabled.
+  - Ex. Usage, **Given nodes with the nodeID 35, 36, 37, & 38 exist**: `python3 controller.py --configure 35,36,37,38 -d` -> Sensors on nodes with ID 35, 36, 37, & 38 are disabled.
 
 - `-e` : Enables all sensors on the given node. Can enable all sensors on more than one node at once if the nodeID's are separated by a comma. Example usage:
- - Ex. Usage, **Given a node with the nodeID 34 exists**: `python3 controller.py --configure 34 -e` -> Node with ID 34 is enabled.
- - Ex. Usage, **Given nodes with the nodeID 39, 40, 41, & 42 exist**: `python3 controller.py --configure 39,40,41,42 -e` -> Sensors on nodes with ID 39, 40, 41, & 42 are enabled.
+  - Ex. Usage, **Given a node with the nodeID 34 exists**: `python3 controller.py --configure 34 -e` -> Node with ID 34 is enabled.
+  - Ex. Usage, **Given nodes with the nodeID 39, 40, 41, & 42 exist**: `python3 controller.py --configure 39,40,41,42 -e` -> Sensors on nodes with ID 39, 40, 41, & 42 are enabled.
 
 - `-sdf` : Changes the frequency at which the selected node sends data. Can change multiple node's setting if nodeID's are separated by a comma. Example usage:
- - Ex. Usage, **Given a node with the nodeID 43 exists**: `python3 controller.py --configure 43 -sdf 15` -> Node with ID 43 now has a sending frequency of 15 seconds. 
- - Ex. Usage, **Given nodes with the nodeID 44, 45, and 46 exist**: `python3 controller.py --configure 44,45,46 -sdf 15` -> Nodes ID 44, 45, & 46 now have a sending frequency of 15 seconds. 
+  - Ex. Usage, **Given a node with the nodeID 43 exists**: `python3 controller.py --configure 43 -sdf 15` -> Node with ID 43 now has a sending frequency of 15 seconds. 
+  - Ex. Usage, **Given nodes with the nodeID 44, 45, and 46 exist**: `python3 controller.py --configure 44,45,46 -sdf 15` -> Nodes ID 44, 45, & 46 now have a sending frequency of 15 seconds. 
 
 -`-nsf` : Changes the frequency at which the selected node sends status messages. Can change multiple node's setting if nodeID's are separated by a comma. Example usage:
- - Ex. Usage, **Given a node with the nodeID 43 exists**: `python3 controller.py --configure 43 -sdf 15` -> Node with ID 43 now has a status publish frequency of 15 seconds. 
- - Ex. Usage, **Given nodes with the nodeID 44, 45, and 46 exist**: `python3 controller.py --configure 44,45,46 -sdf 15` -> Nodes ID 44, 45, & 46 now have a status publish frequency of 15 seconds. 
+  - Ex. Usage, **Given a node with the nodeID 43 exists**: `python3 controller.py --configure 43 -sdf 15` -> Node with ID 43 now has a status publish frequency of 15 seconds. 
+  - Ex. Usage, **Given nodes with the nodeID 44, 45, and 46 exist**: `python3 controller.py --configure 44,45,46 -sdf 15` -> Nodes ID 44, 45, & 46 now have a status publish frequency of 15 seconds. 
 
 - `-ssf `: Changes the frequency at which the selected node senses data(for all sensors). Can change multiple node setting if nodeID's are separated by a comma. Example usage below.
- - Ex. Usage, **Given a node with the nodeID 47 exists**: `python3 controller.py --configure 47 -ssf 15` -> Node with ID 47 now has a sensing frequency of 15 seconds. 
- - Ex. Usage, **Given nodes with the nodeID 48, 49, and 50 exist**: `python3 controller.py --configure 44,45,46 -ssf 15` -> Nodes ID 48, 49, & 50 now have a sensing frequency of 15 seconds.
+  - Ex. Usage, **Given a node with the nodeID 47 exists**: `python3 controller.py --configure 47 -ssf 15` -> Node with ID 47 now has a sensing frequency of 15 seconds. 
+  - Ex. Usage, **Given nodes with the nodeID 48, 49, and 50 exist**: `python3 controller.py --configure 44,45,46 -ssf 15` -> Nodes ID 48, 49, & 50 now have a sensing frequency of 15 seconds.
 
 - `-sd <True/False>` : Sets if the node should save data to SD storage when disconnected from Wi-Fi. True = Yes, False = No. You can use this command on multiple nodes, provided there's a comma in between the nodeIDs. Example usage below. 
- - Ex. Usage: `python3 controller.py --configure 57 -sd True` -> Node with the ID 51 will store to SD.
- - Ex. Usage: `python3 controller.py --configure 58,59,60,61,62 -sm False` -> Node with the IDs 58, 59, 60, 61, & 62 will not save to SD storage.
+  - Ex. Usage: `python3 controller.py --configure 57 -sd True` -> Node with the ID 51 will store to SD.
+  - Ex. Usage: `python3 controller.py --configure 58,59,60,61,62 -sm False` -> Node with the IDs 58, 59, 60, 61, & 62 will not save to SD storage.
 
 ### The sen configure commmand
 
 The `-sen` subcommand of the `--configure` command lets the users configure individual sensors on microWaggle nodes.
 
 - `-sen add` : Adds a new sensor to the the given node via a user command prompt. If you specify multiple nodes in this command, the sensor form you fill out will be applied to **all** nodes specified. 
-
- - Ex. Usage: `python3 controller.py --configure 63 -sen add
- - Ex. Usage: `python3 controller.py --configure 64,65,66,67 -sen add
+  - Ex. Usage: `python3 controller.py --configure 63 -sen add
+  - Ex. Usage: `python3 controller.py --configure 64,65,66,67 -sen add
 
 - `-sen rm <sensor ID to remove>` : Removes a sensor from the given node. If you specifiy multiple nodes in this command, the sensor will be removed on each node, **provided the sensor with the corresponding ID exists**.
-
- - Ex. Usage: `python3 controller.py --configure 68 -sen rm 01` -> Sensor 01 gets removed from node with ID 68.
- - Ex. Usage: `python3 controller.py --configure 69, 70 -sen rm 01` -> Sensor 01 gets removed from nodes with ID's 69 & 70.
+  - Ex. Usage: `python3 controller.py --configure 68 -sen rm 01` -> Sensor 01 gets removed from node with ID 68.
+  - Ex. Usage: `python3 controller.py --configure 69, 70 -sen rm 01` -> Sensor 01 gets removed from nodes with ID's 69 & 70.
 
 -`-sen dis <sensor ID to disable>` : Disables the selected sensor. If you specify multiple sensors using this command, all sensors specified will be affected. 
- - Ex. Usage, **Given node 71 with sensor with ID 0 exists**: `python3 controller.py --configure 71 -sen dis 0`
+  - Ex. Usage, **Given node 71 with sensor with ID 0 exists**: `python3 controller.py --configure 71 -sen dis 0`
 
 - `-sen en <sensor ID to disable>` : Enables the selected sensor. If you specify multiple sensors using this command, all sensors specified will be affected. 
- - Ex. Usage, **Given node 72 with sensor with ID 0 exists**: `python3 controller.py --configure 72 -sen en 0`
+  - Ex. Usage, **Given node 72 with sensor with ID 0 exists**: `python3 controller.py --configure 72 -sen en 0`
 
 - `-sen freq [sensing frequency in seconds] <sensor ID to affect>` : Changes the frequency of sensing for the selected sensor.
- - Ex. Usage, **Given node 73 with sensor with ID 0 exists**: `python3 controller.py --configure 73 -sen freq 45 0`
+  - Ex. Usage, **Given node 73 with sensor with ID 0 exists**: `python3 controller.py --configure 73 -sen freq 45 0`
 
 
 
