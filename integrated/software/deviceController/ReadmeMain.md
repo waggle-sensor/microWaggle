@@ -54,7 +54,7 @@ Once a local configuration is set `python3 controller.py --list` command can be 
 - `--configure <nodeID> [-rn/-id/-d/-e/-sdf/-ssf/-sm/-sd/-sen]`
    - Ex. Usage: **See below**
 
-## The Configure command
+## The 'configure' command
 
 The configure command lets you remotely control your nodes and there sensors after the intended nodes is included on the local config file. 
 
@@ -91,7 +91,7 @@ The configure command lets you remotely control your nodes and there sensors aft
   - Ex. Usage: `python3 controller.py --configure 57 -sd True` -> Node with the ID 51 will store to SD.
   - Ex. Usage: `python3 controller.py --configure 58,59,60,61,62 -sm False` -> Node with the IDs 58, 59, 60, 61, & 62 will not save to SD storage.
 
-### The sen configure commmand
+### The 'sen configure' commmand
 
 The `-sen` subcommand of the `--configure` command lets the users configure individual sensors on microWaggle nodes.
 
