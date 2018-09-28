@@ -2,6 +2,7 @@
 Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate module is used to send data from the Particle.io cloud to Argonnes Beehive server. The relayServer module is designed to manage this task.
 
 ## Usage  
+
 - Obtaining Beehive Credentials:
   Before the implimentation of the python module the microWaggle users must obtain Beehive server Credentials from the Waggle team at Argonne.  These credentials can be requested through any of the following Waggle team members:
     - 
