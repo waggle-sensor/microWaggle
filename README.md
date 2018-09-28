@@ -32,7 +32,6 @@ Micro-Waggle devices works under a unique design in which they read and publish 
 
 ### 5. See Streaming Data from the Sensors: 
 After flashing the generic [code](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/firmware/microWaggle.ino), you can check the data being published on the Particle.io cloud through the Particle.io [Console](https://console.particle.io/events).  
-<img src="https://raw.githubusercontent.com/waggle-sensor/summer2018/master/microWaggle/Resources/Data_Publish.png?token=AYVA9KML3IUtAiXXZzqZYKvJ2xiTIswkks5bs-YEwA%3D%3D">
 
 ### 6. Control the Device from your Computer: 
 The micro-Waggle platform allows its users to have some control over there devices via the Particle.io cloud. The deviceController modelue enables this facilty.
