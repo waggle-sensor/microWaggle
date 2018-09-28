@@ -37,6 +37,6 @@ For each Particle.io device, the Waggle team will provide 4 files named 'node_id
     -  `relay-log.txt`  : This file will keep a log of all data coming out of the Particle.io nodes descibed by the file structure setup on the previous step.
  
 ## Implimenting the relayServer     
- After two initial steps are completed, run the command ```python3 relay-server.py ``` to send data from your devices to the Beehive Server. Once this command is ran, it will display data being recieved from the Particle.io cloud on the CLI. To further verify if the data is being sent to the Beehive server please contact the Wagge Team at Argonne National Labs.   
+In completion of the previous steps are completed, run the command ```python3 relay-server.py ``` to send data from your devices to the Beehive Server. Once this command is ran, it will display data being recieved from the Particle.io cloud on the CLI. To further verify if the data is being sent to the Beehive server please contact the Wagge Team at Argonne National Labs.   
 
 **Special Note: Particle.io does not store the data on its cloud. As such, make sure to run the releayServer module appropriately to avoid data loss** 
