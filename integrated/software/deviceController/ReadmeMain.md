@@ -8,44 +8,58 @@ The device controller module lets you manage a microWaggle node network through 
 
 ## First time usage: 
 - Run `controller.py` with no args. -> `python3 controller.py`. The`--help` prompt gives you the basic options that the controller provides.
-- On its initial run`controller.py` will create `nodeConfig.json` file which will keep the node configuration the user intends to keep. Everytime the module is implimented, it will seek to mimic the configuration defined on `nodeConfig.json`on the actual microWaggle network.  
-- 
+- On its initial run`controller.py` will create `nodeConfig.json` file which keeps the node configuration the user intends to have. Everytime the module is implimented, it will seek to mimic the configuration defined on `nodeConfig.json`on the actual microWaggle network.  
 
-## Usage
+### Local Node Configuration
+The command  `python3 controller.py --add` is intened to be used in adding new nodes to the local configuration file. An example usage of the said command is given below. 
 
-### 
+As the diagram indicates the user will be prompted to provide the following details for a given node:
+- Node Name : User defined name for the intened microWaggle node **(Cannot have spaces)**
+- Node ID   : User defined name for the intened microWaggle node **(Cannot have spaces)**
+- Device ID : The Device ID provided by Particle.io for the intened node
+- Data Publish Frequency : The frequency in which sensor data should be published to the Particle.io cloud
+- Status Publish Frequency: The frequency in which node status data should be published to the Particle.io cloud
+- Access Token : The access token provided by Particle.io for the intened node
+- Use the default Micro-waggle Config: The desired configuration of the sensors present on the node. **First time users are recommended to keep the default microWaggle Configuration**. If you choose to keep a diffent configuration the following information needs to be provided.
+- Number of Sensors to be added : The number of sensors present in the actual microWaggle code **(Cannot have spaces)**
+- Names of each sensor : Use specified names for each sensor **(Cannot have spaces)**
+- ID for sensor : The sensor ID's specified on the firmware of the microWaggle device for the intended sensor
+- Enabled for sensor : State wheather the sensor is enabled or disabled on the specific sensor
+- Sensing Frequency for sensor : State how often the sensor needs to read data
+An example usage of the prompt is given below.
 
 
-* **The script must be run in PYTHON3 with one of the following args seen below:**
+Once a local configuration is set `python3 controller.py --list` command can be used to verify the intened configuration. An example configuration is given below:
 
-`--help` or `help` : Lists all commands, as well as their respective syntaxes and functions.
+## Basic Usage Cases
 
+- `--help` : Lists all commands, as well as their respective syntaxes and functions.
 * Ex. Usage: `python3 controller.py --help` 
 
-`--list [OPTIONAL ARGS: -sen <nodeID>]`: Lists all nodes, respective information such as nodeID and deviceID, and sensor configuration. Using the `-sen` flag will list all sensors and their attributes on the given `nodeID`.
-* Ex. Usage: `python3 controller.py --list`
-* Ex. Usage, **Given that node with ID 22 exists**: `python3 controller.py --list -sen 22`
+-`--list`: Lists all nodes present on the local config file. The respective information such as nodeID and deviceID, and sensor configuration will also be displayed.
+ Ex. Usage: `python3 controller.py --list`
 
-`--enAll` : Enables all sensors on on all nodes.
-* Ex. Usage: `python3 controller.py --enAll`
+- `--enAll` : Enables all sensors on on all nodes.
+ Ex. Usage: `python3 controller.py --enAll`
 
-`--disAll` : Disables all sensors on all nodes.
-* Ex. Usage: `python3 controller.py --disAll`
+- `--disAll` : Disables all sensors on all nodes.
+ Ex. Usage: `python3 controller.py --disAll`
 
-`--rm <nodeID>` : removes the node with the specified name
-* Ex. Usage, **Given a node with nodeID 33 exists** : `python3 controller.py --rm <nodeID>`
+-`--rm <nodeID>` : removes the node with the specified name
+ Ex. Usage, **Given a node with nodeID 33 exists** : `python3 controller.py --rm <nodeID>`
 
-`--add` : Starts the prompt to add a new node.
-* Ex. Usage: `python3 controller.py --add`
+- `--add` : Starts the prompt to add a new node.
+ Ex. Usage: `python3 controller.py --add`
 
-`--configure <nodeID> [-rn/-id/-d/-e/-sdf/-ssf/-sm/-sd/-sen]`
+- `--configure <nodeID> [-rn/-id/-d/-e/-sdf/-ssf/-sm/-sd/-sen]`
 * Ex. Usage: **See below**
 
-## The configure command
+## The Configure command
 
-The configure command is the main attraction, and how you modify your node. Here are the args you can use.
+The configure command lets you remotely control your nodes and there sensors after the intended nodes is included on the local config file. 
 
-`-rn <new name>` : Renames the entered node. You can specify multiply nodes to rename to the same thing, by putting a comma in between the nodes you want to rename. Ex. Usage below. 
+`-rn <new name>` : Renames the entered node.
+Ex. Usage below. 
 * **NODE NAMES CANNOT HAVE SPACES!**
 * Ex. Usage, **Given a node with the nodeID 33 exists**: `python3 controller.py --configure 33 -rn bar` -> Node 33 is now named bar.
 * Ex. Usage, **Given nodes with the nodeID 33, 99, and 66 exist**: `python3 controller.py --configure 33,66,99 -rn Field_node` -> nodes with the nodeID 33, 66, and 99 are now named "Field_node".
