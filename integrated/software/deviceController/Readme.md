@@ -11,7 +11,8 @@ The device controller module lets you manage a microWaggle node network through 
 - On its initial run`controller.py` will create `nodeConfig.json` file which keeps the node configuration the user intends to have. Everytime the module is implimented, it will seek to mimic the configuration defined on `nodeConfig.json`on the actual microWaggle network.  
 
 ### Local Node Configuration
-The command  `python3 controller.py --add` is intened to be used in adding new nodes to the local configuration file. An example usage of the said command is given below. 
+The command  `python3 controller.py --add` is intened to be used in adding new nodes to the local configuration file. An example usage of the said command is given below:
+<img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/add.png" width="700">
 
 As the diagram indicates the user will be prompted to provide the following details for a given node:
 - Node Name : User defined name for the intened microWaggle node **(Cannot have spaces)**
@@ -27,9 +28,10 @@ As the diagram indicates the user will be prompted to provide the following deta
 - Enabled for sensor : State wheather the sensor is enabled or disabled on the specific sensor
 - Sensing Frequency for sensor : State how often the sensor needs to read data
 An example usage of the prompt is given below.
-
+<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/resources/images/userDefined.png" width="700">
 
 Once a local configuration is set `python3 controller.py --list` command can be used to verify the intened configuration. An example configuration is given below:
+<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/resources/images/list.png" width="700">
 
 ## Basic use cases
 
