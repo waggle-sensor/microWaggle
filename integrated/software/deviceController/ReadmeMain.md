@@ -1,25 +1,21 @@
 # DeviceController
 
-The Device controller module gives users of MicroWaggle Devices a form of user control over there devices. The module is capable of 
-prompting status messages, changing frequencies of reading and publishing data as well as enabling & disabling of Device sensors. 
+The device controller module gives users of microWaggle nodes a form of remote user control. The module is capable of changing frequencies of reading and publishing data as well as enabling & disabling of device sensors. 
+ 
+## Micro-Waggle deviceController CLI guide
 
-# Micro-Waggle Configuration CLI guide
-
-
-The script `controller.py` is everything you should need to change configuration of your Micro-Waggle network. It's still a WIP, so bear with us! Please let us know if you have any questions or concerns.  
-## Some really important things to know: 
-
-* Version 1.1 was released as of 8/20/18. Mostly cleaned up the code, but now **access tokens are node-specific, and upon creation can use the same access token as the existing node. Just follow the "add node" prompt when you do** `python3 controller.py --add`.
-* If two or more nodes have the same ID, any change made to one node with a corresponding ID to another will undergo the same change. For example, if you have two nodes with the ID 45, you'll add the same sensor to both nodes after using the `--configure 45 -sen add` command, because they share the same ID.
+The device controller module lets you manage a microWaggle node network through a CLI. It should be noted that the **access tokens** and the unique **device IDs** privided by Particle.io needs to be at hand before the implimentation of the module. 
 
 ## First time usage: 
-* **If you want to use an existing configuration**, just make sure your `nodeConfigs.json` and `config.txt` files are in the same folder as `controller.py`. Everything should be smooth sailing from there.
-* Run `controller.py` with no args. -> `python3 controller.py`. The `--help` prompt will come up, that's normal.
-* `controller.py` will create any files needed, such as `config.txt` and `nodeConfig.json`. 
-* You'll be prompted to enter your access token. After you enter it, setup should be done.
-
+- Run `controller.py` with no args. -> `python3 controller.py`. The`--help` prompt gives you the basic options that the controller provides.
+- On its initial run`controller.py` will create `nodeConfig.json` file which will keep the node configuration the user intends to keep. Everytime the module is implimented, it will seek to mimic the configuration defined on `nodeConfig.json`on the actual microWaggle network.  
+- 
 
 ## Usage
+
+### 
+
+
 * **The script must be run in PYTHON3 with one of the following args seen below:**
 
 `--help` or `help` : Lists all commands, as well as their respective syntaxes and functions.
