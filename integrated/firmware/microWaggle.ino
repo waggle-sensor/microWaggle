@@ -144,7 +144,7 @@ String getStatusMsg()
     }
     status += "SD:" + boolToEnabledDisabled(sdCardEnabled) + ";";
     status += "ReportFreq:" + String(reportingFreq);
-    status += "StatusFreq:" + String(statusFreq);
+    status += ";StatusFreq:" + String(statusFreq);
     return status;
 }
 
