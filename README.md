@@ -22,10 +22,10 @@ After your Particle.io account is set up, your devices can be registered to your
 
 You can simply click on the device ID you seek to visit the page specific to the selected device (The link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). Particle.io also provides an Integrated Web based Development Environment(IDE). The platform also provides detailed [documentation](https://docs.particle.io/guide/getting-started/build/photon/#web-ide) on working your way around the Web IDE. Moving forward, it is necessary to seek out the [access token](https://docs.particle.io/guide/how-to-build-a-product/authentication/#what-39-s-an-access-token-) tied to your Particle.io account. Reading data as well as sending commands to your devices can only be done through an access token. Access token can be easilly gained thorugh the Particle.io [Build](https://build.particle.io/build/) page.
 Once on the said page, click on the settings icon on the lower left hand corner of the page. The settings icon is emphazied below:
-
-
+<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/settings.png">
 
 This will result in your Access token being displyed on the left hand side of the page as demostrated below:
+<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/accessToken.png">
 
 ### 3. Start with a Blink:
 Once you are familiar with the Particle.io Web IDE, you can go ahead and program your first application for your device. Particle.io provides a basic implimentation of an LED Blink [programme](https://docs.particle.io/guide/getting-started/build/photon/#flashing-your-first-app) to get you started. Once impliemented you will see your Photon/Electron flashing its LED on pin D7. 
@@ -34,7 +34,10 @@ Once you are familiar with the Particle.io Web IDE, you can go ahead and program
 Micro-Waggle devices works under a unique design in which they read and publish data. The code found [here](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/firmware/microWaggle.ino) gives a generic implimentation of a micro-Waggle application. In the same manner you flashed the [Blink App](https://docs.particle.io/guide/getting-started/build/photon/#flashing-your-first-app) on to your device, you can flash the generic micro-Waggle code onto your Device. 
 
 ### 5. See Streaming Data from the Sensors: 
-After flashing the generic [code](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/firmware/microWaggle.ino), you can check the data being published on the Particle.io cloud through the Particle.io [Console](https://console.particle.io/events).  
+After flashing the generic [code](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/firmware/microWaggle.ino), you can check the data being published on the Particle.io cloud through the Particle.io [Console](https://console.particle.io/events).  At this time the particle console would look like this:
+<img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/events.png">
+
+
 
 ### 6. Control the Device from your Computer: 
 The micro-Waggle platform allows its users to have some control over there devices via the Particle.io cloud. The deviceController modelue enables this facilty.
