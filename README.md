@@ -27,7 +27,7 @@ Once on the said page, click on the settings icon on the lower left hand corner 
 <img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/settings.png" width="300">
 
 
-This will result in your Access token being displyed on the left hand side of the page as demostrated below:
+This will result in your Access token being displyed on the left hand side of the page as demostrated here:
 <img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/accessToken.png" width="300">
 
 
