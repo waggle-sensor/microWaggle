@@ -79,7 +79,7 @@ The configure command lets you remotely control your nodes and there sensors aft
   - Ex. Usage: **Given a node with the nodeID 43 exists**: `python3 controller.py --configure 43 -sdf 15` -> Node with ID 43 now has a sending frequency of 15 seconds. 
   - Ex. Usage: **Given nodes with the nodeID 44, 45, and 46 exist**: `python3 controller.py --configure 44,45,46 -sdf 15` -> Nodes ID 44, 45, & 46 now have a sending frequency of 15 seconds. 
 
--`-nsf` : Changes the frequency at which the selected node sends status messages. Can change multiple node's setting if nodeID's are separated by a comma. Example usage:
+- `-nsf` : Changes the frequency at which the selected node sends status messages. Can change multiple node's setting if nodeID's are separated by a comma. Example usage:
   - Ex. Usage: **Given a node with the nodeID 43 exists**: `python3 controller.py --configure 43 -sdf 15` -> Node with ID 43 now has a status publish frequency of 15 seconds. 
   - Ex. Usage: **Given nodes with the nodeID 44, 45, and 46 exist**: `python3 controller.py --configure 44,45,46 -sdf 15` -> Nodes ID 44, 45, & 46 now have a status publish frequency of 15 seconds. 
 
@@ -96,18 +96,18 @@ The configure command lets you remotely control your nodes and there sensors aft
 The `-sen` subcommand of the `--configure` command lets the users configure individual sensors on microWaggle nodes.
 
 - `-sen add` : Adds a new sensor to the the given node via a user command prompt. If you specify multiple nodes in this command, the sensor form you fill out will be applied to **all** nodes specified. 
-  - Ex. Usage: `python3 controller.py --configure 63 -sen add
-  - Ex. Usage: `python3 controller.py --configure 64,65,66,67 -sen add
+   - Ex. Usage: `python3 controller.py --configure 63 -sen add
+   - Ex. Usage: `python3 controller.py --configure 64,65,66,67 -sen add
 
 - `-sen rm <sensor ID to remove>` : Removes a sensor from the given node. If you specifiy multiple nodes in this command, the sensor will be removed on each node, **provided the sensor with the corresponding ID exists**.
-  - Ex. Usage: `python3 controller.py --configure 68 -sen rm 01` -> Sensor 01 gets removed from node with ID 68.
-  - Ex. Usage: `python3 controller.py --configure 69, 70 -sen rm 01` -> Sensor 01 gets removed from nodes with ID's 69 & 70.
+   - Ex. Usage: `python3 controller.py --configure 68 -sen rm 01` -> Sensor 01 gets removed from node with ID 68.
+   - Ex. Usage: `python3 controller.py --configure 69, 70 -sen rm 01` -> Sensor 01 gets removed from nodes with ID's 69 & 70.
 
--`-sen dis <sensor ID to disable>` : Disables the selected sensor. If you specify multiple sensors using this command, all sensors specified will be affected. 
-  - Ex. Usage: **Given node 71 with sensor with ID 0 exists**: `python3 controller.py --configure 71 -sen dis 0`
+- `-sen dis <sensor ID to disable>` : Disables the selected sensor. If you specify multiple sensors using this command, all sensors specified will be affected. 
+   - Ex. Usage: **Given node 71 with sensor with ID 0 exists**: `python3 controller.py --configure 71 -sen dis 0`
 
 - `-sen en <sensor ID to disable>` : Enables the selected sensor. If you specify multiple sensors using this command, all sensors specified will be affected. 
-  - Ex. Usage: **Given node 72 with sensor with ID 0 exists**: `python3 controller.py --configure 72 -sen en 0`
+   - Ex. Usage: **Given node 72 with sensor with ID 0 exists**: `python3 controller.py --configure 72 -sen en 0`
 
 - `-sen freq [sensing frequency in seconds] <sensor ID to affect>` : Changes the frequency of sensing for the selected sensor.
-  - Ex. Usage: **Given node 73 with sensor with ID 0 exists**: `python3 controller.py --configure 73 -sen freq 45 0`
+   - Ex. Usage: **Given node 73 with sensor with ID 0 exists**: `python3 controller.py --configure 73 -sen freq 45 0`
