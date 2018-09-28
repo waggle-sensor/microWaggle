@@ -31,7 +31,7 @@ An example usage of the prompt is given below.
 
 Once a local configuration is set `python3 controller.py --list` command can be used to verify the intened configuration. An example configuration is given below:
 
-## Basic Usage Cases
+## Basic Use Cases
 
 - `--help` : Lists all commands, as well as their respective syntaxes and functions.
    - Ex. Usage: `python3 controller.py --help` 
