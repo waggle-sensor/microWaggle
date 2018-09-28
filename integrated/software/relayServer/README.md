@@ -39,4 +39,4 @@ For each Particle.io device, the Waggle team will provide 4 files named 'node_id
 ## Running the relay Server     
  After two initial steps are completed, run the command ```python3 relay-server.py ``` to send data from your devices to the Beehive Server. Once this command is ran, it will display data being recieved from the Particle.io cloud on the CLI. To further verify if the data is being sent to the Beehive server please contact the Wagge Team at Argonne National Labs.   
 
-**Special Notes: Make sure to keep the relayServer module running appropriately while data is being published to the Particle.io cloud. If not, Since Particle.io does not store the data, the data will be lost** 
+**Special Notes: Particle.io does not store the data on its cloud. As such, make sure to run the releayServer module appropriately to avoid data loss** 
