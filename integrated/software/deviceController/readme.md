@@ -199,7 +199,7 @@ Once at the console page specific to your device you will find two functions nam
 
 These functions allows similar means of control as the nodeController module. The function descriptions are given below.
 
-### nodeconfig Function 
+### nodeConfig Function 
 The function allows users to manage their preferences for the node as a whole. 
 
 - Function facilitates: 
@@ -216,32 +216,32 @@ The function allows users to manage their preferences for the node as a whole.
     
     <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/enableAll.jpeg">
      
-- “disableAll”        – isables reporting of sensor data for all sensors of node
+- “disableAll”        – Disables all sensors of node
    - Example usage: 
     
     <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/disableAll.jpeg">
 
-- “enableSD”          – enables reporting of sensor data to the SD card
+- “enableSD”          – Enables the SD card
    - Example usage: 
     
     <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/enableSD.jpeg">
     
-- “disableSD”         – disables reporting of sensor data to the SD card
+- “disableSD”         – Disables the SD card
    - Example usage: 
     
     <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/disableSD.jpeg">
     
-- “freqReport-[secs]” – changes frequency of reporting sensor data to [secs] seconds
+- “freqReport-[secs]” – Changes frequency of reporting sensor data to [secs] seconds
    - Example usage: Changing the data reprting frequency to 20 seconds 
     
     <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/freqReport.jpeg">
  
-- “statusFreq-[secs]” – changes frequency of reporting status data to [secs] seconds
+- “statusFreq-[secs]” – Changes frequency of reporting status data to [secs] seconds
    - Example usage: Changing the status reprting frequency to 15 seconds
        
    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/statusFreq.jpeg">
 
-### sensorconfig Function 
+### sensorConfig Function 
 The function allows users to manage their preferences for individual sensors.
  
 - Function facilitates: 
