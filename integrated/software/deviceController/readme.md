@@ -213,8 +213,8 @@ The function allows users to manage their preferences for the node as a whole.
 
 - “enableAll”         – Enables all the sensors on the node
    - Example usage: 
-     
-     <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/enableAll.jpeg">
+    
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/enableAll.jpeg">
      
 - “disableAll”        – isables reporting of sensor data for all sensors of node
    - Example usage: 
