@@ -2,7 +2,7 @@
 
 ## Why micro-Waggle? 
 
-## Getting Started 
+## Getting started 
 
 ### 1. Devices and accounts: 
 
