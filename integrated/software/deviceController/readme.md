@@ -195,7 +195,7 @@ The `-sen` subcommand of the `--configure` command lets the users configure indi
 Micro-Waggle also allows users to control there devices through particles console page specif to the respective Particle.io device. The specified link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). For example, a micro-Waggle device with a device ID '53002a000c51353432383931' will have a console page like this 'https://console.particle.io/devices/53002a000c51353432383931'. 
 
 Once at the console page specific to your device you will find two functions named 'nodeConfig' and 'sensorConfig' on the lower left hand side of the page. The two functions should be displayed like this:
-
+ <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/functions.jpeg">
 
 These functions allows similar means of control as the nodeController module. The function descriptions are given below.
 
@@ -218,20 +218,28 @@ The function allows users to manage their preferences for the node as a whole.
      
 - “disableAll”        – isables reporting of sensor data for all sensors of node
    - Example usage: 
-<img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/disableAll.jpeg">
+    
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/disableAll.jpeg">
 
 - “enableSD”          – enables reporting of sensor data to the SD card
    - Example usage: 
-   
+    
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/enableSD.jpeg">
+    
 - “disableSD”         – disables reporting of sensor data to the SD card
    - Example usage: 
-   
+    
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/disableSD.jpeg">
+    
 - “freqReport-[secs]” – changes frequency of reporting sensor data to [secs] seconds
-   - Example usage: Changing the data reprting frequency to 20 seconds
+   - Example usage: Changing the data reprting frequency to 20 seconds 
+    
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/freqReport.jpeg">
  
 - “statusFreq-[secs]” – changes frequency of reporting status data to [secs] seconds
    - Example usage: Changing the status reprting frequency to 15 seconds
- 
+       
+   <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/statusFreq.jpeg">
 
 ### sensorconfig Function 
 The function allows users to manage their preferences for individual sensors.
