@@ -1,10 +1,10 @@
-# DeviceController
+# Device Controller
 
-The device controller module gives users of microWaggle nodes a form of remote user control. The module is capable of changing frequencies of reading and publishing data as well as enabling & disabling of device sensors. 
+The deviceController module gives users of microWaggle nodes a form of remote user control. The module is capable of changing frequencies of reading and publishing data as well as enabling & disabling of device sensors. 
  
 ## Micro-Waggle deviceController CLI guide
 
-The device controller module lets you manage a microWaggle node network through a CLI. It should be noted that the **access tokens** and the unique **device IDs** privided by Particle.io needs to be at hand before the implimentation of the module. 
+The deviceController module lets you manage a microWaggle node network through a CLI. It should be noted that the **access tokens** and the unique **device IDs** privided by Particle.io needs to be at hand before the implimentation of the module. 
 
 ## First time usage: 
 - Run `controller.py` with no args. -> `python3 controller.py`. The`--help` prompt gives you the basic options that the controller provides.
