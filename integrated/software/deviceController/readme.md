@@ -261,7 +261,17 @@ The function allows users to manage their preferences for individual sensors.
        - “_”    - No changes to the frequency of the sensing are made
 
 - Examples
-  - Enabling Sensor 2
-  - Changing Sensiing frequency of Sensor 2 to 30 seconds
+  - Enabling sensor 2:
+      
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/example1.jpeg">
+    
+  - Changing Sensiing frequency of Sensor 2 to 30 seconds:
+  
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/example2.jpeg">
+    
   - Enabling Sensor 1, while changing its sensing frequency to 10 seconds
+  
+    <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/example3.jpeg">
+  
+  
   
