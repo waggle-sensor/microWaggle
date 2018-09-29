@@ -63,7 +63,7 @@ The micro-Waggle project keeps all its data at ANLs Beehive Server. Beehives pub
 Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate tool is used to send data from the cloud to the Beehive server. The [relayServer](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/software/relayServer) module is designed to manage this task. 
  
 #### 8.1 Using the test node at ANL
-Again for the use of the relayServer module you may use the test Node set up at ANL. As descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer), make sure to obtain the necessary credentials for the Relay server module to connect to Beehive. 
+Again for the use of the relayServer module you may use the test Node set up at ANL. As descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer/readme.md), make sure to obtain the necessary credentials for the Relay server module to connect to Beehive. 
 Since the device ID for the Particle.io device at Argonne is '53002a000c51353432383931' the directory structure for the use of the test node shoud look like this:
 ```bash
 ├── parentDirectory
@@ -79,7 +79,7 @@ After the initial implimentation of the `relay-server.py` with no args. -> `pyth
 The later instructions given on the releyServer module would be sufficient in moving forward. 
 
 #### 8.2 Using your own node
-The instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/relayServer/Readme.md) on the releyServer module would be sufficient in setting up your own Node. 
+The instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/relayServer/readme.md) on the releyServer module would be sufficient in setting up your own Node. 
 
 ### 9. Check data from device: 
 Once the relayServer is online, in less than 5 minutes you should see micro-Waggle data being published on [Beehive](https://www.mcs.anl.gov/research/projects/waggle/downloads/datasets/index.php). The data will come under the link label: MWTesting.complete.recent.csv.
