@@ -45,7 +45,7 @@ After flashing the generic [code](https://github.com/waggle-sensor/summer2018/bl
 The micro-Waggle platform allows its users to control there devices remotely via the Particle.io cloud. The [deviceController](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/) module enables this facilty.
 
 #### 6.1 Using the test node at Argonne National Labs(ANL) 
-This module can readilly be used through the Particle.io device already set up for testing at ANL. The node runs the Generic microWaggle program described above. You can start by following the instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/Readme.md). Make sure to include the details given below when setting up your local Node Configuration:
+This module can readilly be used through the Particle.io device already set up for testing at ANL. The node runs the Generic microWaggle program described above. You can start by following the instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/readme.md). Make sure to include the details given below when setting up your local Node Configuration:
 - Device ID    : 53002a000c51353432383931
 - Access token : c9003c4f929c03b67daac131a84b9d3aa3d75e3e
 - Use the default Micro-waggle Config: True
@@ -79,7 +79,7 @@ After the initial implimentation of the `relay-server.py` with no args. -> `pyth
 The later instructions given on the releyServer module would be sufficient in moving forward. 
 
 #### 8.2 Using your own node
-The instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/relayServer/Readme.md)on the releyServer module would be sufficient in setting up your own Node. 
+The instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/relayServer/Readme.md) on the releyServer module would be sufficient in setting up your own Node. 
 
 ### 9. Check data from device: 
 Once the relayServer is online, in less than 5 minutes you should see micro-Waggle data being published on [Beehive](https://www.mcs.anl.gov/research/projects/waggle/downloads/datasets/index.php). The data will come under the link label: MWTesting.complete.recent.csv.
