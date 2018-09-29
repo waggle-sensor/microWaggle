@@ -20,7 +20,7 @@ In order to proceed, you can create a Particle.io account [here](https://login.p
 After your Particle.io account is set up, your devices can be registered to your account via this [link](https://setup.particle.io/). The devices registered on your account can be veiwed through the Particle.io [Console](https://console.particle.io/devices). At this point you can recognize the device IDs for your devices set by Particle.io. The particle.io console should look like this: 
 <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/devices.png" width="600">
 
-You can simply click on the device ID you seek to visit the page specific to the selected device (The link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). Particle.io also provides an Integrated Web based Development Environment(IDE). The platform also provides detailed [documentation](https://docs.particle.io/guide/getting-started/build/photon/#web-ide) on working your way around the Web IDE. Moving forward, it is necessary to seek out the [access token](https://docs.particle.io/guide/how-to-build-a-product/authentication/#what-39-s-an-access-token-) tied to your Particle.io account. Reading data as well as sending commands to your devices can only be done through an access token. Access token can be easilly gained thorugh the Particle.io [Build](https://build.particle.io/build/) page.
+You can simply click on the device ID you seek to visit the page specific to the selected device (The link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). Particle.io also provides an Integrated Web based Development Environment(IDE). The platform also provides detailed [documentation](https://docs.particle.io/guide/getting-started/build/photon/#web-ide) on working your way around the Web IDE. Moving forward, it is necessary to seek out the [Access Token](https://docs.particle.io/guide/how-to-build-a-product/authentication/#what-39-s-an-access-token-) tied to your Particle.io account. Reading data as well as sending commands to your devices can only be done through an Access Token. Access Token can be easilly gained thorugh the Particle.io [Build](https://build.particle.io/build/) page.
 
 Once on the said page, click on the settings icon on the lower left hand corner of the page. The settings icon is emphazied below:
 
@@ -47,7 +47,7 @@ The micro-Waggle platform allows its users to control there devices remotely via
 #### 6.1 Using the test node at Argonne National Labs(ANL) 
 This module can readilly be used through the Particle.io device already set up for testing at ANL. The node runs the Generic microWaggle program described above. You can start by following the instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/readme.md). Make sure to include the details given below when setting up your local Node Configuration:
 - Device ID    : 53002a000c51353432383931
-- Access token : c9003c4f929c03b67daac131a84b9d3aa3d75e3e
+- Access Token : c9003c4f929c03b67daac131a84b9d3aa3d75e3e
 - Use the default Micro-waggle Config: True
 
 You are free to use any appropriate inputs for the rest of the prompts. After setting up your local configuration file you will have control over the test node set up. Make sure to try out different configurations before moving forward. To seek how the 
