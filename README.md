@@ -48,7 +48,7 @@ The micro-Waggle platform allows its users to control there devices remotely via
 This module can readilly be used through the Particle.io device already set up for testing at ANL. The node runs the generic micro-Waggle program described above. You can start by following the instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/readme.md). Make sure to include the details given below when setting up your local Node Configuration:
 - Device ID    : 53002a000c51353432383931
 - Access Token : c9003c4f929c03b67daac131a84b9d3aa3d75e3e
-- Use the default Micro-waggle Config: True
+- Use the default micro-Waggle Config: True
 
 You are free to use any appropriate inputs for the rest of the prompts. After setting up your local configuration file you will have control over the test node set up. Make sure to try out different configurations before moving forward. To seek how the 
 Node responds you may visit this [link](https://api.particle.io/v1/devices/events?access_token=c9003c4f929c03b67daac131a84b9d3aa3d75e3e) which publishes the data coming out of the said Node. 
