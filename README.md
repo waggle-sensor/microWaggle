@@ -60,7 +60,7 @@ This can be done through following similar steps descibed above. Make sure to re
 The micro-Waggle project keeps all its data at ANLs Beehive Server. Beehives publish credentials can be requested through the Waggle team at ANL.
 
 ### 8. Run relayServer to send data to Beehive: 
-Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate tool is used to send data from the cloud to the Beehive server. The [relayServer](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/software/relayServer) module is designed to manage this task. 
+Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate tool is used to send data from the cloud to the Beehive server. The [relayServer](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer) module is designed to manage this task. 
  
 #### 8.1 Using the test node at ANL
 Again for the use of the relayServer module you may use the test Node set up at ANL. As descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer/readme.md), make sure to obtain the necessary credentials for the Relay server module to connect to Beehive. 
