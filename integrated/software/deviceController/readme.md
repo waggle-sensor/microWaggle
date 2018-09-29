@@ -194,7 +194,7 @@ The `-sen` subcommand of the `--configure` command lets the users configure indi
 
 Micro-Waggle also allows users to control there devices through particles console page specif to the respective Particle.io device. The specified link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). For example, a micro-Waggle device with a device ID '53002a000c51353432383931' will have a console page like this 'https://console.particle.io/devices/53002a000c51353432383931'. 
 
-Once at the console page specific to your device you will find two functions named 'nodeConfig' and 'sensorConfig' on the lower left hand side of the page. The two functions should be displayed like this:
+Once at the console page specific to your device, you will find two functions named 'nodeConfig' and 'sensorConfig' on the lower left hand side of the page. The two functions should be displayed like this:
  <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/functions.JPG">
 
 These functions allows similar means of control as the nodeController module. The function descriptions are given below.
