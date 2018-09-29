@@ -12,9 +12,32 @@ The deviceController module lets you manage a microWaggle node network through a
 
 ### Local Node Configuration
 The command  `python3 controller.py --add` is intened to be used in adding new nodes to the local configuration file. An example usage of the said command is given below:
-<img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/software/deviceController/resources/images/add.png" width="700">
+```bash
+python3 controller.py --add
 
-As the diagram indicates the user will be prompted to provide the following details for a given node:
+-----------------New Node Parametors------------------------
+Node Name? microWaggle_1
+Node ID? 0001
+Device ID? 53002a000c51353432383931
+Data Publish Frequency? 10
+Status Publish Frequency? 15
+SD Card Active? [True/False] True
+Access Token ? c9003c4f929c03b67daac131a84b9d3aa3d75e3e
+Use the default Micro-waggle Config? [True/False] True
+Updating Nodes
+---------------Micro-Waggle-Controller----------------
+[{'config': [['tempSensor', 1, True, 10], ['humiditySensor', 2, True, 10]],
+  'deviceID': '53002a000c51353432383931',
+  'enabled': True,
+  'name': 'microWaggle_1',
+  'nodeID': '0001',
+  'saveToSD': True,
+  'sendingFrequency': '10',
+  'statusFrequency': '15',
+  'token': 'c9003c4f929c03b67daac131a84b9d3aa3d75e3e'}]
+------------------------------------------------------
+```
+As indicated above, the user will be prompted to provide the following details for a given node:
 - Node Name : User defined name for the intened microWaggle node **(Cannot have spaces)**
 - Node ID   : User defined name for the intened microWaggle node **(Cannot have spaces)**
 - Device ID : The Device ID provided by Particle.io for the intened node
