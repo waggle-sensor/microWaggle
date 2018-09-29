@@ -50,11 +50,63 @@ As indicated above, the user will be prompted to provide the following details f
 - ID for sensor : The sensor ID's specified on the firmware of the microWaggle device for the intended sensor **(Cannot have spaces)**
 - Enabled for sensor : State wheather the sensor is enabled or disabled on the specific sensor
 - Sensing Frequency for sensor : State how often the sensor needs to read data
-An example usage of the prompt is given below.
-<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/resources/images/userDefined.png" width="700">
+An example usage of the prompt is given below:
+
+```bash
+Use the default Micro-waggle Config? [True/False] False
+Number of Sensors to Add ? 2
+------------------------------------
+Configuring Sensor 1:
+Name for sensor 1? lightSensor
+ID for sensor 1? 3  
+Enabled for sensor 1?(True/False) True
+Sensing Frequency for sensor 1? 18
+------------------------------------
+Configuration for Sensor 1:
+['lightSensor', '3', True, '18']
+------------------------------------
+------------------------------------
+Configuring Sensor 2:
+Name for sensor 2? pressureSensor
+ID for sensor 2? 3
+Enabled for sensor 2?(True/False) False
+Sensing Frequency for sensor 2? 25
+------------------------------------
+Configuration for Sensor 2:
+['pressureSensor', '3', False, '25']
+------------------------------------
+Final Configuration for the Sensors
+[['lightSensor', '3', True, '18'], ['pressureSensor', '3', False, '25']]
+------------------------------------
+```
 Once a local configuration is set `python3 controller.py --list` command can be used to verify the intened configuration. An example configuration is given below:
 
-<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/resources/images/list.png" width="700">
+```bash
+python3 controller.py --list
+[✓] Node with ID 0001 loaded
+[✓] Node with ID 0002 loaded
+---------------Micro-Waggle-Controller----------------
+[{'config': [['tempSensor', 1, True, 10], ['humiditySensor', 2, True, 10]],
+  'deviceID': '53002a000c51353432383931',
+  'enabled': True,
+  'name': 'microWaggle_1',
+  'nodeID': '0001',
+  'saveToSD': True,
+  'sendingFrequency': '10',
+  'statusFrequency': '15',
+  'token': 'c9003c4f929c03b67daac131a84b9d3aa3d75e3e'},
+ {'config': [['lightSensor', '3', True, '18'],
+             ['pressureSensor', '3', False, '25']],
+  'deviceID': '53002a000c51353432383932',
+  'enabled': True,
+  'name': 'microWaggle_2',
+  'nodeID': '0002',
+  'saveToSD': False,
+  'sendingFrequency': '15',
+  'statusFrequency': '20',
+  'token': 'c9003c4f929c03b67daac131a84b9d3aa3d75abb'}]
+------------------------------------------------------
+```
 
 ## Basic use cases
 
