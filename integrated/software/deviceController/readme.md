@@ -188,3 +188,69 @@ The `-sen` subcommand of the `--configure` command lets the users configure indi
 
 - `-sen freq [sensing frequency in seconds] <sensor ID to affect>` : Changes the frequency of sensing for the selected sensor.
    - Ex. Usage: **Given node 73 with sensor with ID 0 exists**: `python3 controller.py --configure 73 -sen freq 45 0`
+
+
+## Micro-Waggle deviceController through the Particle.io Console
+
+Micro-Waggle also allows users to control there devices through particles console page specif to the respective Particle.io device. The specified link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). For example, a micro-Waggle device with a device ID '53002a000c51353432383931' will have a console page like this 'https://console.particle.io/devices/53002a000c51353432383931'. 
+
+Once at the console page specific to your device you will find two functions named 'nodeConfig' and 'sensorConfig' on the lower left hand side of the page. The two functions should be displayed like this:
+
+
+These functions allows similar means of control as the nodeController module. The function descriptions are given below.
+
+### nodeconfig Function 
+The function allows users to manage their preferences for the node as a whole. 
+
+- Function facilitates: 
+   - Enabling/disabling all sensors on the node
+   - Enabling/disabling the usage of an SD 
+   - Changing the frequency of reporting sensor data
+   - Changing the frequency of reporting status data
+  
+  
+#### Parameters given:
+
+- “enableAll”         – Enables all the sensors on the node
+   - Example usage: 
+     
+- “disableAll”        – isables reporting of sensor data for all sensors of node
+   - Example usage: 
+   
+- “enableSD”          – enables reporting of sensor data to the SD card
+   - Example usage: 
+   
+- “disableSD”         – disables reporting of sensor data to the SD card
+   - Example usage: 
+   
+- “freqReport-[secs]” – changes frequency of reporting sensor data to [secs] seconds
+   - Example usage: Changing the data reprting frequency to 20 seconds
+ 
+- “statusFreq-[secs]” – changes frequency of reporting status data to [secs] seconds
+   - Example usage: Changing the status reprting frequency to 15 seconds
+ 
+
+### sensorconfig Function 
+The function allows users to manage their preferences for individual sensors.
+ 
+- Function facilitates: 
+   - Enabling/disabling of individual sensors
+   - Changing the frequency of sensing data for individual sensors.
+  
+#### Parameters given:
+
+- Format: “sensorID;status;frequency”
+    - sensorID: The Sensor ID defined within the firmware flashed on the micro-Waggle device. 
+    - status:
+       - “en”   - Enables the specified sensor
+       - “dis”  - Disables the specified sensor
+       -  “_”   - No changes to the status of the sensor are made
+    - frequency:
+       - [secs] - Changes frequency of reporting sensor data for the specified sensor to [secs] seconds
+       - “_”    - No changes to the frequency of the sensing are made
+
+- Examples
+  - Enabling Sensor 2
+  - Changing Sensiing frequency of Sensor 2 to 30 seconds
+  - Enabling Sensor 1, while changing its sensing frequency to 10 seconds
+  
