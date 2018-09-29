@@ -54,7 +54,7 @@ You are free to use any appropriate inputs for the rest of the prompts. After se
 Node responds you may visit this [link](https://api.particle.io/v1/devices/events?access_token=c9003c4f929c03b67daac131a84b9d3aa3d75e3e) which publishes the data coming out of the said Node. 
 
 #### 6.2 Using your own node 
-This can be done through following similar steps descibed above. Make sure to replace the device ID and the Access Token with the desired credentials belonging to your Particle.io device. The data streams which is published through your device can be seen through the Particle.io [Console](https://console.particle.io/events).  Since you own the Particle.io account in this case, you can go ahead and control your device via the particle cloud as descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/deviceController#micro-waggle-devicecontroller-through-the-particleio-console)
+This can be done through following similar steps descibed above. Make sure to replace the device ID and the Access Token with the desired credentials belonging to your Particle.io device. The data streams which is published through your device can be seen through the Particle.io [Console](https://console.particle.io/events).  Since you own the Particle.io account in this case, you can go ahead and control your device via the Particle.io [Console](https://console.particle.io/devices) as descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/deviceController#micro-waggle-devicecontroller-through-the-particleio-console)
 
 ### 7. Get Beehive publish credentials:
 The micro-Waggle project keeps all its data at ANLs Beehive Server. Beehives publish credentials can be requested through the Waggle team at ANL.
