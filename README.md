@@ -4,7 +4,7 @@
 
 ## Getting Started 
 
-### 1. Devices and Accounts: 
+### 1. Devices and accounts: 
 
 The micro-Waggle is a project designed to work on the [Particle.io](https://www.particle.io/what-is-particle) platform. Micro-Waggles can be programmed through one of the following Particle.io devices:
 - [Particle Photon](https://store.particle.io/collections/photon#photon)   : Wifi based device 
@@ -15,7 +15,7 @@ The micro-Waggle is a project designed to work on the [Particle.io](https://www.
 
 In order to proceed, you can create a Particle.io account [here](https://login.particle.io/signup).
 
-### 2. Register your Device and get your Particle Access Token: 
+### 2. Register your device and get your Particle.io Access Token: 
 
 After your Particle.io account is set up, your devices can be registered to your account via this [link](https://setup.particle.io/). The devices registered on your account can be veiwed through the Particle.io [Console](https://console.particle.io/devices). At this point you can recognize the device IDs for your devices set by Particle.io. The particle.io console should look like this: 
 <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/devices.png" width="600">
