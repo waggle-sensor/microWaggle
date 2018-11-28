@@ -1,70 +1,58 @@
 ## What is micro-Waggle?
+The micro-Waggle is an implementation of the Waggle platform for Particle.io devices. It communicates with the Waggle Beehive via small packets of data called sensorgrams. Data from micro-Waggle devices appears alongside data from other Waggle implementations such as Chicago's AoT network and can be retreived by identical methods.
 
 ## Why micro-Waggle? 
+Micro-Waggle provides a means to deploy lightweight, low-footprint sensor packages as part of a network of Waggle nodes in order to capture varied kinds of data in diverse environments.
 
 ## Getting started 
 
-### 1. Devices and accounts: 
-
-The micro-Waggle is a project designed to work on the [Particle.io](https://www.particle.io/what-is-particle) platform. Micro-Waggles can be programmed through one of the following Particle.io devices:
+### 1. Devices and accounts
+The micro-Waggle has been implemented on two Particle products:
 - [Particle Photon](https://store.particle.io/collections/photon#photon)   : Wifi based device 
 <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/photon.png" width="300">
 
 - [Particle Electron](https://store.particle.io/collections/electron#electron) : Cellular based device
 <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/electron_1.png" width="300">
 
-In order to proceed, you can create a Particle.io account [here](https://login.particle.io/signup).
+These devices communicate with the Particle Cloud and must be claimed and set up in order to retreive data. You can create a Particle.io account [here](https://login.particle.io/signup). **You need an account to view the Particle Console and Build environments.** You can only view data from a device you have registered to your account.
 
-### 2. Register your device and get your Particle.io Access Token: 
+Once you have set up your account, [set up](https://setup.particle.io/) your Particle on your Wifi network, claim your first device, and register it to your account.
 
-After your Particle.io account is set up, your devices can be registered to your account via this [link](https://setup.particle.io/). The devices registered on your account can be veiwed through the Particle.io [Console](https://console.particle.io/devices). At this point you can recognize the device IDs for your devices set by Particle.io. The particle.io console should look like this: 
+### 2. Getting familiar with the platform
+The devices registered on your account can be veiwed through the Particle.io [Console](https://console.particle.io/devices). At this point you can recognize the device IDs for your devices set by Particle.io. The particle.io console should look like this: 
 <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/devices.png" width="600">
 
-You can simply click on the device ID you seek to visit the page specific to the selected device (The link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). Particle.io also provides an Integrated Web based Development Environment(IDE). The platform also provides detailed [documentation](https://docs.particle.io/guide/getting-started/build/photon/#web-ide) on working your way around the Web IDE. Moving forward, it is necessary to seek out the [Access Token](https://docs.particle.io/guide/how-to-build-a-product/authentication/#what-39-s-an-access-token-) tied to your Particle.io account. Reading data as well as sending commands to your devices can only be done through an Access Token. Access Token can be easilly gained thorugh the Particle.io [Build](https://build.particle.io/build/) page.
+You can simply click on the device ID you seek to visit the page specific to the selected device (The link should look like this: https://console.particle.io/devices/YOUR_DEVICE_ID). Particle.io also provides a Web based Integrated Development Environment (IDE) and detailed [documentation](https://docs.particle.io/guide/getting-started/build/photon/#web-ide) for its use.
 
-Once on the said page, click on the settings icon on the lower left hand corner of the page. The settings icon is emphazied below:
+Similar to Arduino, each piece of Particle firmware requires a "Setup" portion which runs on each startup of the device and a "Loop" portion which repeats and which governs the normal operation of the device. If this is your first time working with a Particle.io device or you are unfamiliar with Arduino-like platforms, it is recommended that you try out the demonstration programs, including the classic "Blink", on the Particle Build page. Particle has provided detailed [documentation](https://docs.particle.io/reference/device-os/firmware/photon/) on the features and capabilities of your device.
 
-<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/settings.png" width="300">
+At this point, try to flash some working code (such as Blink) to the device. You may want to use the Particle [command-line interface (CLI)](https://docs.particle.io/reference/developer-tools/cli/) to do this, or you can do it via the web IDE. Once you are comfortable with the device, you can start setting up your micro-Waggle.
 
+### 3. Building and programming generic micro-Waggle code
+Micro-Waggle devices convert data into a machine-readable string that the Waggle Beehive server can interpret. The code found [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/firmware/microWaggle.ino) gives a generic implementation of a micro-Waggle application for the Particle Photon. This code can be copied and pasted into the Particle Build IDE and flashed to your device "over the air". Alternatively, you can compile it and flash it to the Photon via serial using the Particle CLI.
 
-This will result in your Access token being displyed on the left hand side of the page as demostrated here:
-<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/accessToken.png" width="300">
+The default setup for the micro-Waggle publishes dummy data (the integer "5") as the output of each sensor, and includes two dummy sensors ("temp" and "humidity") for you to test changing measurement frequencies with. To add your own sensors, you must add code to the the micro-Waggle firmware which reads a sensor as part of the loop.
 
-
-### 3. Start with a Blink:
-Once you are familiar with the Particle.io Web IDE, you can go ahead and program your first application for your device. Particle.io provides a basic implimentation of an LED Blink [programme](https://docs.particle.io/guide/getting-started/build/photon/#flashing-your-first-app) to get you started. Once impliemented you will see your Photon/Electron flashing its LED on pin D7. 
-
-### 4. Building and programming generic micro-Waggle code:
-Micro-Waggle devices works under a unique design in which they read and publish data. The code found [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/firmware/microWaggle.ino) gives a generic implimentation of a micro-Waggle application. In the same manner you flashed the [Blink app](https://docs.particle.io/guide/getting-started/build/photon/#flashing-your-first-app) on to your device, you can flash the generic micro-Waggle code onto your device. 
-
-### 5. See streaming data from the sensors: 
-After flashing the generic [code](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/firmware/microWaggle.ino), you can check the data being published on the Particle.io cloud through the Particle.io [Console](https://console.particle.io/events).  At this time the Particle.io Console would look like this:
+### 4. See streaming data from the sensors
+After flashing the generic [code](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/firmware/microWaggle.ino), you can check the data being published on the Particle.io cloud through the Particle.io [Console](https://console.particle.io/events).  On an individual device's page, you can see details about that device's data stream. On the Particle Console's [Events](https://console.particle.io/events) page, you can view the data stream from all of your devices.
 <img src="https://raw.githubusercontent.com/waggle-sensor/microWaggle/master/integrated/resources/events.png">
 
-### 6. Control the device from your computer: 
-The micro-Waggle platform allows its users to control there devices remotely via the Particle.io cloud. The [deviceController](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/) module enables this facilty.
+### 5. Get your Access Token
+To access data from your Particle device and to send it commands without visiting the Particle Console, you will need your permanent [Access Token](https://docs.particle.io/guide/how-to-build-a-product/authentication/#what-39-s-an-access-token-) which is tied to your Particle.io account. Visit the Particle.io [Build](https://build.particle.io/build/) page and click on the settings icon on the lower left hand corner of the page (below) to find your token.
 
-#### 6.1 Using the test node at Argonne National Labs(ANL) 
-This module can readilly be used through the Particle.io device already set up for testing at ANL. The node runs the generic micro-Waggle program described above. You can start by following the instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/readme.md). Make sure to include the details given below when setting up your local Node Configuration:
-- Device ID    : 53002a000c51353432383931
-- Access Token : c9003c4f929c03b67daac131a84b9d3aa3d75e3e
-- Use the default micro-Waggle Config: True
+<img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/settings.png" width="300">       <img src="https://github.com/waggle-sensor/microWaggle/blob/master/integrated/resources/accessToken.png" width="300">
 
-You are free to use any appropriate inputs for the rest of the prompts. After setting up your local configuration file you will have control over the test node set up. Make sure to try out different configurations before moving forward. To seek how the 
-Node responds you may visit this [link](https://api.particle.io/v1/devices/events?access_token=c9003c4f929c03b67daac131a84b9d3aa3d75e3e) which publishes the data coming out of the said Node. 
-
-#### 6.2 Using your own node 
-This can be done through following similar steps descibed above. Make sure to replace the device ID and the Access Token with the desired credentials belonging to your Particle.io device. The data streams which is published through your device can be seen through the Particle.io [Console](https://console.particle.io/events).  Since you own the Particle.io account in this case, you can go ahead and control your device via the Particle.io Console as descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/deviceController#micro-waggle-devicecontroller-through-the-particleio-console)
+### 6. Control the device from your computer
+The micro-Waggle generic firmware allows a user to control devices remotely via the Particle Cloud. You can configure your device via the Particle.io Console by sending arguments to the sensorConfig and nodeConfig functons as descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/deviceController#micro-waggle-devicecontroller-through-the-particleio-console). The [deviceController](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/deviceController/) module provides this functionality from a terminal. The deviceController requires Python 3 with json, requests, os, sys, and pprint packages.
 
 ### 7. Get Beehive publish credentials:
-The micro-Waggle project keeps all its data at ANLs Beehive Server. Beehives publish credentials can be requested through the Waggle team at ANL.
+The micro-Waggle project keeps all its data at ANL's Beehive Server. Beehive publish credentials can be requested from the Waggle team at ANL.
 
 ### 8. Run relayServer to send data to Beehive: 
 Particle.io devices can only publish its data to the Particle.io cloud. As such, a separate tool is used to send data from the cloud to the Beehive server. The [relayServer](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer) module is designed to manage this task. 
  
-#### 8.1 Using the test node at ANL
-Again for the use of the relayServer module you may use the test Node set up at ANL. As descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer/readme.md), make sure to obtain the necessary credentials for the Relay server module to connect to Beehive. 
-Since the device ID for the Particle.io device at Argonne is '53002a000c51353432383931' the directory structure for the use of the test node shoud look like this:
+As descibed [here](https://github.com/waggle-sensor/microWaggle/tree/master/integrated/software/relayServer/readme.md), make sure to obtain the necessary credentials for the Relay server module to connect to Beehive. 
+Since the device ID for our test device at Argonne is '53002a000c51353432383931' the directory structure for the use of the test node shoud look like this:
 ```bash
 ├── parentDirectory
 │   ├── relay-server.py
@@ -75,22 +63,20 @@ Since the device ID for the Particle.io device at Argonne is '53002a000c51353432
 │   │   │   ├──key.pem 
 │   │   │   ├──cert.pem
 ```
-After the initial implimentation of the `relay-server.py` with no args. -> `python3 relay-server.py` make sure to include the access token 'c9003c4f929c03b67daac131a84b9d3aa3d75e3e' within the `nodeConfig.json`.
-The later instructions given on the releyServer module would be sufficient in moving forward. 
+Your directory structure will be identical, with a separate folder for each device.
 
-#### 8.2 Using your own node
-The instructions given [here](https://github.com/waggle-sensor/microWaggle/blob/master/integrated/software/relayServer/readme.md) on the releyServer module would be sufficient in setting up your own Node. 
+After the initial implimentation of the `relay-server.py` with no args. -> `python3 relay-server.py` make sure to include your access token within the `nodeConfig.json`.
+To move forward with setting up the relay server, read the documentation for that module.
 
-### 9. Check data from device: 
+
+### 9. Check data from device
 Once the relayServer is online, in less than 5 minutes you should see micro-Waggle data being published on [Beehive](https://www.mcs.anl.gov/research/projects/waggle/downloads/datasets/index.php). The data will come under the link label: MWTesting.complete.recent.csv.
 
-### 10. Tweak the micro-Waggle behavior and see changes on Beehive: 
-
+### 10. Tweak the micro-Waggle behavior and see changes on Beehive
 At this point you are in a position to modify the generic micro-Waggle [code](https://github.com/waggle-sensor/summer2018/blob/master/microWaggle/integrated/firmware/microWaggle.ino) and flash it into your Particle.io devices. After such changes are made, you can observe its effects through [Beehive](https://www.mcs.anl.gov/research/projects/waggle/downloads/datasets/index.php). 
 
-### 11. Code your own micro-Waggle device:
-
-Congratulations, you are ready to impliment your own microWaggle implimentation. Particle.io's example [log](https://docs.particle.io/guide/getting-started/examples/photon/) is good place to get you started. Make sure to contact the Waggle team at ANL for further support.
+### 11. Code your own micro-Waggle device
+Congratulations, you are ready to impliment your own micro-Waggle implimentation. Try adding real sensors and changing their behavior. Make sure to contact the Waggle team at ANL for further support.
 
 ------------------------------------------------------------
 
