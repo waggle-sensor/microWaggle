@@ -49,22 +49,12 @@ except IOError:
 # ############################################################################################################
 logFile = open("relay-log.txt", 'a')
 
-access_tokens = load_access_tokens('relay-config.txt')
 
-if len(access_tokens) == 0:
-    print("[WARNING] No access tokens found. Please input access tokens into relay-config.txt")
-    sys.exit(1)
-
-for token in access_tokens:
-    print("[RELAY-SERVER] Access token {0} loaded".format(token))
-    logFile.write("[RELAY-SERVER] Access token {0} loaded".format(token) + "\n")
-
-
-def startStream(threadID):
+def startStream(access_token):
     IDMapping = load_mapping_ID()
 
     messages = SSEClient('https://api.particle.io/v1/devices/events?access_token={}'
-                         .format(access_tokens[threadID]))
+                         .format(access_token))
 
     plugins = {}
 
@@ -87,33 +77,59 @@ def startStream(threadID):
         if particleID not in plugins:
             print('[RELAY-SERVER] Initial event for', particleID)
 
-            # credentials = waggle.plugin.Credentials(
-            #     host='cookie',
-            #     node_id=beehiveID,
-            #     sub_id='0000000000000001',
-            #     cacert='devices/'+str(particleID)+'/cacert.pem',
-            #     cert='devices/'+str(particleID)+'/cert.pem',
-            #     key='devices/'+str(particleID)+'/key.pem',
-            # )
+            credentials = waggle.plugin.Credentials(
+                host='beehive1.mcs.anl.gov',
+                node_id=beehiveID,
+                sub_id='0000000000000001',
+                cacert='devices/'+str(particleID)+'/cacert.pem',
+                cert='devices/'+str(particleID)+'/cert.pem',
+                key='devices/'+str(particleID)+'/key.pem',
+            )
 
-            plugins[particleID] = waggle.plugin.PrintPlugin(id=100, version=(0, 0, 1))
+            try:
+                plugins[particleID] = waggle.plugin.Plugin(id=100, version=(0, 0, 1), credentials=credentials)
+            except Exception as exc:
+                print(exc)
+                raise
+
+            print('[RELAY-SERVER] Plugin ready for', particleID)
 
         plugin = plugins[particleID]
 
         print("--------------------------------------")
-        print("ParticleID:", particleID)
+        print('[RELAY-SERVER] Forwarding messages from', particleID, 'to', beehiveID)
 
         with open("relay-log.txt", 'a') as file:
             json.dump(data, file)
-            file.write( "\t\t" + event + " -> THREAD ID {0} ".format(threadID) + " at: " + jsonData["published_at"] + '\n' )
+            file.write( "\t\t" + event + " -> TOKEN {0} ".format(access_token) + " at: " + jsonData["published_at"] + '\n' )
 
-            if event == 'sensorgram':
-                sensorgrams = data.split(";")
-                for sensorgram in sensorgrams:
-                    plugin.add_measurement(bytes.fromhex(sensorgram))
-                    plugin.publish_measurements()
+        if event == 'sensorgram':
+            sensorgrams = data.split(";")
+
+            for sensorgram in sensorgrams:
+                plugin.add_measurement(bytes.fromhex(sensorgram))
+                plugin.publish_measurements()
 
 
-for i in enumerate(access_tokens):
-    t = Thread(target=startStream, args=(i[0], ))
-    t.start()
+def main():
+    access_tokens = load_access_tokens('relay-config.txt')
+
+    if len(access_tokens) == 0:
+        print("[WARNING] No access tokens found. Please input access tokens into relay-config.txt")
+        sys.exit(1)
+
+    for token in access_tokens:
+        print("[RELAY-SERVER] Access token {0} loaded".format(token))
+        logFile.write("[RELAY-SERVER] Access token {0} loaded".format(token) + "\n")
+
+    threads = [Thread(target=startStream, args=(token,), name=token) for token in access_tokens]
+
+    for t in threads:
+        t.start()
+
+    for t in threads:
+        t.join()
+
+
+if __name__ == '__main__':
+    main()
