@@ -4,7 +4,6 @@ import json
 from sseclient import SSEClient
 import waggle.plugin
 import os
-from pprint import pprint
 import sys
 
 access_tokens = []
@@ -67,6 +66,8 @@ def startStream(threadID):
     messages = SSEClient('https://api.particle.io/v1/devices/events?access_token={}'
                          .format(access_tokens[threadID]))
 
+    plugins = {}
+
     for msg in messages:
         event = msg.event
         data = msg.data
@@ -78,14 +79,29 @@ def startStream(threadID):
         data = jsonData['data']
         particleID = jsonData['coreid']
 
-        print("--------------------------------------")
-
-        print("ParticleID:" + str(particleID))
-
         try:
             beehiveID = IDMapping[particleID]
         except KeyError:
             continue
+
+        if particleID not in plugins:
+            print('[RELAY-SERVER] Initial event for', particleID)
+
+            # credentials = waggle.plugin.Credentials(
+            #     host='cookie',
+            #     node_id=beehiveID,
+            #     sub_id='0000000000000001',
+            #     cacert='devices/'+str(particleID)+'/cacert.pem',
+            #     cert='devices/'+str(particleID)+'/cert.pem',
+            #     key='devices/'+str(particleID)+'/key.pem',
+            # )
+
+            plugins[particleID] = waggle.plugin.PrintPlugin(id=100, version=(0, 0, 1))
+
+        plugin = plugins[particleID]
+
+        print("--------------------------------------")
+        print("ParticleID:", particleID)
 
         with open("relay-log.txt", 'a') as file:
             json.dump(data, file)
@@ -94,27 +110,6 @@ def startStream(threadID):
             if event == 'sensorgram':
                 sensorgrams = data.split(";")
                 for sensorgram in sensorgrams:
-
-                    credentials = waggle.plugin.Credentials(
-                        host='cookie',
-                        node_id=beehiveID,
-                        sub_id='0000000000000001',
-                        cacert='devices/'+str(particleID)+'/cacert.pem',
-                        cert='devices/'+str(particleID)+'/cert.pem',
-                        key='devices/'+str(particleID)+'/key.pem',
-                    )
-
-                    # Sending data to Beehive
-                    plugin = waggle.plugin.Plugin(
-                        id=37,
-                        version=(2, 4, 1),
-                        credentials=credentials)
-
-                    try:
-                        pprint(waggle.protocol.unpack_sensorgrams(bytes.fromhex(sensorgram)))
-                    except KeyError:
-                        pass
-
                     plugin.add_measurement(bytes.fromhex(sensorgram))
                     plugin.publish_measurements()
 
