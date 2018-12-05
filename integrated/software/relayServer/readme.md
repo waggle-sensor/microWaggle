@@ -1,10 +1,10 @@
 # Relay Server
-Particle.io devices can only publish their data to the Particle.io Cloud. As such, a separate module is used to send data from the Particle.io cloud to the Waggle Beehive server at Argonne National Laboratory (ANL). The relayServer module manages this task.
+The generic micro-Waggle firmware packages data as sensorgrams, which are interpretable by the Waggle Beehive server. However, Particle.io devices can only publish their data to the Particle Cloud. As such, a separate module is used to send data from the Particle Cloud to the Waggle Beehive server at Argonne National Laboratory (ANL). The relayServer module manages this task.
 
 ## Configuration
 
 * Obtain Beehive credentials:
-  Before the implementation, micro-Waggle users must obtain Beehive server credentials from the Waggle team at ANL.
+  Before implementating this module, micro-Waggle users must obtain Beehive server credentials from the Waggle team at ANL. It is also possible to set up your own Beehive server. Visit the Waggle GitHub pages for code and details.
 
 * Setting up the directory structure:
 For each Particle.io device, the Waggle team will provide 4 files named 'node_id', 'cacert.pem', 'key.pem' and 'cert.pem' which carry the necessary credentials for the relayServer module to connect to Beehive. Each device should have its own directory on the machine running the relayServer, named after the Particle.io Device ID and containing only these four files. An example of this file structure is given below:
