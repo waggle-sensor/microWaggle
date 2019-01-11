@@ -53,4 +53,4 @@ A process will be run for each access token which forwards its devices.
 ## Implementing the relayServer
 Upon completion of the previous steps, run the command ```python3 relay-server.py ``` to send data from your devices to the Beehive Server. Once this command is executed, the module will display the data being recieved from the Particle.io cloud in the terminal. To further verify that the data is being sent to the Beehive server please contact the Waggle Team at ANL for access to the most updated data portal.
 
-**Special Note: Particle.io does not store the data on its cloud. As such, make sure to run the releayServer module appropriately to avoid data loss**
+**Special Note: Particle.io does not store the data on its cloud. As such, make sure to run the relayServer module appropriately to avoid data loss**
